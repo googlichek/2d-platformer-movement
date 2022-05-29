@@ -19,6 +19,12 @@ namespace Game.Scripts.Core
         [SerializeField]
         protected SpriteFlipComponent spriteFlipComponent = default;
 
+        [SerializeField]
+        protected AttackComponent attackComponent = default;
+
+        [SerializeField]
+        protected ParticlesComponent particlesComponent = default;
+
         public RaycastComponent RaycastComponent => raycastComponent;
 
         public MovementComponent MovementComponent => movementComponent;
@@ -30,6 +36,10 @@ namespace Game.Scripts.Core
 
         public SpriteFlipComponent SpriteFlipComponent => spriteFlipComponent;
 
+        public AttackComponent AttackComponent => attackComponent;
+
+        public ParticlesComponent ParticlesComponent => particlesComponent;
+
         public override void Init()
         {
             base.Init();
@@ -39,6 +49,8 @@ namespace Game.Scripts.Core
             AttachComponent(movementStateMachineComponent);
             AttachComponent(animationComponent);
             AttachComponent(spriteFlipComponent);
+            AttachComponent(attackComponent);
+            AttachComponent(particlesComponent);
         }
 
         public override void Dispose()
@@ -50,6 +62,8 @@ namespace Game.Scripts.Core
             DetachComponent(movementStateMachineComponent);
             DetachComponent(animationComponent);
             DetachComponent(spriteFlipComponent);
+            DetachComponent(attackComponent);
+            DetachComponent(particlesComponent);
         }
     }
 }

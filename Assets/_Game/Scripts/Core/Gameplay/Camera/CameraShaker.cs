@@ -10,7 +10,7 @@ namespace Game.Scripts.Core
         [SerializeField] [Range(0, 1)]
         private float _traumaDecayFactor = 0.8f;
 
-        [SerializeField] [Range(0, 10)] [Space]
+        [SerializeField] [Range(0, 100)] [Space]
         private float _maximumOffsetTranslational = 2;
 
         [SerializeField] [Range(0, 90)]
@@ -37,9 +37,6 @@ namespace Game.Scripts.Core
         private float _trauma = -1;
 
         private Vector3 _shakeOffset = Vector3.zero;
-
-        public float MovementTrauma => _movementTrauma;
-        public float DamageTrauma => _damageTrauma;
 
         public override void Enable()
         {
@@ -68,7 +65,17 @@ namespace Game.Scripts.Core
             transform.localRotation = Quaternion.Euler(0, 0, z);
         }
 
-        public void AddTrauma(float value)
+        public void AddMovementTrauma(float value)
+        {
+            AddTrauma(value * _movementTrauma);
+        }
+
+        public void AddDamageTrauma(float value)
+        {
+            AddTrauma(value * _damageTrauma);
+        }
+
+        private void AddTrauma(float value)
         {
             _trauma = Mathf.Clamp(_trauma + Mathf.Abs(value), _minimumTrauma, _maximumTrauma);
         }

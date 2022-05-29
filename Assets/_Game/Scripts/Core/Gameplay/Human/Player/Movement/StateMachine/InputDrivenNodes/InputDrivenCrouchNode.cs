@@ -2,20 +2,21 @@
 
 namespace Game.Scripts.Core
 {
-    public class InputDrivenCrouchNode : BaseEntityNode<MovementState>
+    public class InputDrivenCrouchNode : BaseEntityNode<MovementState>, IHumanMovementNode
     {
         private HumanController _owner = default;
-
         private InputWrapper _inputWrapper = default;
+        private CameraOperator _cameraOperator = default;
 
         public InputDrivenCrouchNode(MovementState state) : base(state)
         {
         }
 
-        public void Setup(HumanController owner, InputWrapper inputWrapper)
+        public void Setup(HumanController owner, InputWrapper inputWrapper, CameraOperator cameraOperator)
         {
             _owner = owner;
             _inputWrapper = inputWrapper;
+            _cameraOperator = cameraOperator;
         }
 
         protected override void UpdateNextState()

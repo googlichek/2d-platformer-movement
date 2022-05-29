@@ -29,6 +29,10 @@ namespace Game.Scripts.Core
 
         protected float dashRemainingTime = 0;
 
+        protected bool hasGround = false;
+
+        protected float velocityYBeforeCollision = 0;
+
         public MovementData Data => data;
 
         public Vector2 Velocity => velocity;
@@ -41,6 +45,8 @@ namespace Game.Scripts.Core
         public bool AreConsecutiveJumpsDepleted => jumpsCounter >= data.MaxConsecutiveJumps;
 
         public bool IsDashInProgress => dashRemainingTime > 0;
+
+        public float VelocityYBeforeCollision => velocityYBeforeCollision;
 
         public override void Init()
         {
@@ -59,6 +65,7 @@ namespace Game.Scripts.Core
 
         public override void PhysicsTick()
         {
+            TryToCashVelocityBeforeCollision();
             HandleVericalVelocity();
             HandleHorizontalVelocity();
             ClampVelocity();
@@ -92,6 +99,16 @@ namespace Game.Scripts.Core
             velocity.y = minJumpVelocity;
         }
 
+        protected virtual void TryToCashVelocityBeforeCollision()
+        {
+            if (hasGround == raycastComponent.HasGround)
+                return;
+
+            hasGround = raycastComponent.HasGround;
+            if (hasGround)
+                velocityYBeforeCollision = velocity.y;
+        }
+
         protected virtual void HandleVericalVelocity()
         {
             if (raycastComponent.HasGround && velocity.y <= 0)
@@ -106,7 +123,7 @@ namespace Game.Scripts.Core
             }
         }
 
-        protected void HandleHorizontalVelocity()
+        protected virtual void HandleHorizontalVelocity()
         {
             var speed = data.WalkSpeed;
 

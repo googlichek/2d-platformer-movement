@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Game.Scripts.Utils;
 using UnityEngine;
 
 namespace Game.Scripts.Core
@@ -9,42 +8,26 @@ namespace Game.Scripts.Core
     /// </summary>
     public class RaycastComponent : TickComponent
     {
+        [SerializeField] [Space]
+        private Transform _raycastLeft = default;
+
         [SerializeField]
-        private Rigidbody2D _rigidbody2D = default;
+        private Transform _raycastRight = default;
 
         [SerializeField] [Space]
         private LayerMask _layerMask = LayerMask.GetMask();
 
-        [SerializeField] [Range(0, 16)] [Space]
-        private float _contactDistanceX = 0.025f;
-
         [SerializeField] [Range(0, 16)]
         private float _contactDistanceY = 0.025f;
 
-        private readonly List<RaycastHit2D> _hitsDown = new List<RaycastHit2D>();
+        private readonly List<RaycastHit2D> _hitsDownLeft = new List<RaycastHit2D>();
+        private readonly List<RaycastHit2D> _hitsDownRight = new List<RaycastHit2D>();
 
         private ContactFilter2D _filter2D;
 
         private bool _hasGround = false;
 
         public bool HasGround => _hasGround;
-
-        void OnCollisionEnter2D(Collision2D bump)
-        {
-            if (!_layerMask.HasLayer(bump.gameObject.layer))
-                return;
-
-            CastRays(_hitsDown, Vector2.down, _contactDistanceY);
-        }
-
-        void OnCollisionExit2D(Collision2D bump)
-        {
-            if (!_layerMask.HasLayer(bump.gameObject.layer))
-                return;
-
-            CastRays(_hitsDown, Vector2.down, _contactDistanceY);
-            _hasGround = _hitsDown.Count > 0;
-        }
 
         public override void Init()
         {
@@ -54,13 +37,20 @@ namespace Game.Scripts.Core
 
         public override void PhysicsTick()
         {
-            CastRays(_hitsDown, Vector2.down, _contactDistanceY);
-            _hasGround = _hitsDown.Count > 0;
+            CastRays(_hitsDownLeft, _raycastLeft.position, Vector2.down, _contactDistanceY);
+            CastRays(_hitsDownRight, _raycastRight.position, Vector2.down, _contactDistanceY);
+
+            UpdateGroundState();
         }
 
-        private void CastRays(List<RaycastHit2D> hitList, Vector2 direction, float contactDistance)
+        private void CastRays(List<RaycastHit2D> hitList, Vector2 rayOrigin, Vector2 direction, float contactDistance)
         {
-            _rigidbody2D.Cast(direction, _filter2D, hitList, contactDistance);
+            Physics2D.Raycast(rayOrigin, direction, _filter2D, hitList, contactDistance);
+        }
+
+        private void UpdateGroundState()
+        {
+            _hasGround = _hitsDownLeft.Count > 0 || _hitsDownRight.Count > 0;
         }
     }
 }
