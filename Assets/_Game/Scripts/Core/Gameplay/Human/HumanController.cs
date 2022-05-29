@@ -14,16 +14,19 @@ namespace Game.Scripts.Core
         protected BaseStateMachineComponent<MovementState> movementStateMachineComponent = default;
 
         [SerializeField]
+        protected BaseStateMachineComponent<ActionState> actionStateMachineComponent = default;
+
+        [SerializeField]
         protected AnimationComponent animationComponent = default;
 
         [SerializeField]
         protected SpriteFlipComponent spriteFlipComponent = default;
 
         [SerializeField]
-        protected AttackComponent attackComponent = default;
+        protected GunComponent gunComponent = default;
 
         [SerializeField]
-        protected ParticlesComponent particlesComponent = default;
+        protected ParticlesComponent dustParticlesComponent = default;
 
         public RaycastComponent RaycastComponent => raycastComponent;
 
@@ -32,13 +35,16 @@ namespace Game.Scripts.Core
         public BaseStateMachineComponent<MovementState> MovementStateMachineComponent =>
             movementStateMachineComponent;
 
+        public BaseStateMachineComponent<ActionState> ActionStateMachineComponent =>
+            actionStateMachineComponent;
+
         public AnimationComponent AnimationComponent => animationComponent;
 
         public SpriteFlipComponent SpriteFlipComponent => spriteFlipComponent;
 
-        public AttackComponent AttackComponent => attackComponent;
+        public GunComponent GunComponent => gunComponent;
 
-        public ParticlesComponent ParticlesComponent => particlesComponent;
+        public ParticlesComponent DustParticlesComponent => dustParticlesComponent;
 
         public override void Init()
         {
@@ -47,10 +53,11 @@ namespace Game.Scripts.Core
             AttachComponent(raycastComponent);
             AttachComponent(movementComponent);
             AttachComponent(movementStateMachineComponent);
+            AttachComponent(actionStateMachineComponent);
             AttachComponent(animationComponent);
             AttachComponent(spriteFlipComponent);
-            AttachComponent(attackComponent);
-            AttachComponent(particlesComponent);
+            AttachComponent(gunComponent);
+            AttachComponent(dustParticlesComponent);
         }
 
         public override void Dispose()
@@ -60,10 +67,11 @@ namespace Game.Scripts.Core
             DetachComponent(raycastComponent);
             DetachComponent(movementComponent);
             DetachComponent(movementStateMachineComponent);
+            DetachComponent(actionStateMachineComponent);
             DetachComponent(animationComponent);
             DetachComponent(spriteFlipComponent);
-            DetachComponent(attackComponent);
-            DetachComponent(particlesComponent);
+            DetachComponent(gunComponent);
+            DetachComponent(dustParticlesComponent);
         }
     }
 }

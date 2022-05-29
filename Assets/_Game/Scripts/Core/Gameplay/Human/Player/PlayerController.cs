@@ -9,6 +9,10 @@
             var inputDrivenMovementStateMachine =
                 (InputDrivenMovementStateMachineComponent) movementStateMachineComponent;
             inputDrivenMovementStateMachine.Setup(this);
+
+            var inputDrivenActionStateMachine =
+                (InputDrivenActionStateMachineComponent)actionStateMachineComponent;
+            inputDrivenActionStateMachine.Setup(this);
         }
     }
 }

@@ -20,8 +20,8 @@ namespace Game.Scripts.Core
         [SerializeField] [Range(0, 16)]
         private float _contactDistanceY = 0.025f;
 
-        private readonly List<RaycastHit2D> _hitsDownLeft = new List<RaycastHit2D>();
-        private readonly List<RaycastHit2D> _hitsDownRight = new List<RaycastHit2D>();
+        private readonly List<RaycastHit2D> _hitsDownLeft = new();
+        private readonly List<RaycastHit2D> _hitsDownRight = new();
 
         private ContactFilter2D _filter2D;
 

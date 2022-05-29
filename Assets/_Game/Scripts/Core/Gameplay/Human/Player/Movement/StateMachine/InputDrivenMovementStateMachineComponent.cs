@@ -23,11 +23,11 @@ namespace Game.Scripts.Core
 
         public override void Enable()
         {
-            CreateNode<InputDrivenIdleNode>(MovementState.Idle).Setup(_owner, _inputWrapper, _cameraOperator);
-            CreateNode<InputDrivenWalkNode>(MovementState.Walk).Setup(_owner, _inputWrapper, _cameraOperator);
-            CreateNode<InputDrivenCrouchNode>(MovementState.Crouch).Setup(_owner, _inputWrapper, _cameraOperator);
-            CreateNode<InputDrivenJumpNode>(MovementState.Jump).Setup(_owner, _inputWrapper, _cameraOperator);
-            CreateNode<InputDrivenFallNode>(MovementState.Fall).Setup(_owner, _inputWrapper, _cameraOperator);
+            CreateNode<InputDrivenMovementIdleNode>(MovementState.Idle).Setup(_owner, _inputWrapper, _cameraOperator);
+            CreateNode<InputDrivenMovementWalkNode>(MovementState.Walk).Setup(_owner, _inputWrapper, _cameraOperator);
+            CreateNode<InputDrivenMovementCrouchNode>(MovementState.Crouch).Setup(_owner, _inputWrapper, _cameraOperator);
+            CreateNode<InputDrivenMovementJumpNode>(MovementState.Jump).Setup(_owner, _inputWrapper, _cameraOperator);
+            CreateNode<InputDrivenMovementFallNode>(MovementState.Fall).Setup(_owner, _inputWrapper, _cameraOperator);
 
             ResetState();
         }

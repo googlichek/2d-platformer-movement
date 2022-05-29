@@ -9,6 +9,8 @@ namespace Game.Scripts.Core
 
         private string _currentAnimation = string.Empty;
 
+        public Animator Animator => _animator;
+
         public void SetState(string stateName)
         {
             if (_currentAnimation == stateName &&
@@ -17,6 +19,14 @@ namespace Game.Scripts.Core
 
             _animator.Play(stateName);
             _currentAnimation = stateName;
+        }
+
+        public float GetCurrentAnimationLength()
+        {
+            return
+                CheckIfAnimationIsPlaying(_currentAnimation)
+                    ? _animator.GetCurrentAnimatorStateInfo(0).length
+                    : 0;
         }
 
         private bool CheckIfAnimationIsPlaying(string stateName)
