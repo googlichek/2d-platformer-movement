@@ -1,0 +1,18 @@
+{
+    "name": "Rewired.Extras.ControlMapper.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3057f94f75c02c8469a1c0298c619067"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

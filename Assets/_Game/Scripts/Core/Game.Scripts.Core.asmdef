@@ -1,0 +1,19 @@
+{
+    "name": "Game.Scripts.Core",
+    "rootNamespace": "Game.Scripts.Core",
+    "references": [
+        "GUID:0c6806a0ade0ac94581e26f7fdb77a5d",
+        "GUID:7495fe3af4aee0d469d20417574c92f9",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:3057f94f75c02c8469a1c0298c619067"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
