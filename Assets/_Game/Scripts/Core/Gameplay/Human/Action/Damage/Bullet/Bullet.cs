@@ -1,6 +1,5 @@
 using Game.Scripts.Data;
 using UnityEngine;
-using Zenject;
 
 namespace Game.Scripts.Core
 {
@@ -9,8 +8,11 @@ namespace Game.Scripts.Core
         [SerializeField]
         private BulletData _data = default;
 
-        [SerializeField]
+        [SerializeField] [Space]
         private Rigidbody2D _body = default;
+
+        [SerializeField] [Space]
+        private RicochetComponent _ricochetComponent = default;
 
         private BulletPool _bulletPool = default;
 
@@ -31,6 +33,13 @@ namespace Game.Scripts.Core
             _bulletPool = bulletPool;
         }
 
+        public override void Init()
+        {
+            base.Init();
+
+            AttachComponent(_ricochetComponent);
+        }
+
         public override void Enable()
         {
             base.Enable();
@@ -46,6 +55,13 @@ namespace Game.Scripts.Core
                 return;
 
             _bulletPool.ReleaseBullet(this);
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+
+            DetachComponent(_ricochetComponent);
         }
     }
 }

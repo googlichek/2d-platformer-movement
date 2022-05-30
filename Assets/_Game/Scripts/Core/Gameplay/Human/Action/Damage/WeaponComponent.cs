@@ -5,19 +5,13 @@ using Zenject;
 
 namespace Game.Scripts.Core
 {
-    public class GunComponent : TickComponent
+    public class WeaponComponent : TickComponent
     {
         [SerializeField]
-        private SpriteRenderer _spriteRenderer = default;
-
-        [SerializeField] [Space]
-        private Transform _bulletRootLeft = default;
-
-        [SerializeField]
-        private Transform _bulletRootRight = default;
-
-        [SerializeField] [Space]
         private WeaponData _data = default;
+
+        [SerializeField] [Space]
+        private Transform _bulletRoot = default;
 
         private BulletPool _bulletPool = default;
 
@@ -53,17 +47,15 @@ namespace Game.Scripts.Core
         {
             yield return new WaitForSeconds(delay);
 
-            var directionSign = _spriteRenderer.flipX ? -1 : 1;
+            var directionSign = Mathf.FloorToInt(transform.localScale.x);
 
             var bullet = _bulletPool.GetBullet(_data.BulletType);
             bullet.Setup(_bulletPool);
 
-            var root = directionSign == -1 ? _bulletRootLeft : _bulletRootRight;
-
             var velocityRandomY = Random.Range(-_data.ShotRandomnessY, _data.ShotRandomnessY);
             var shotRandomizer = new Vector3(0, velocityRandomY, 0);
 
-            bullet.transform.SetPositionAndRotation(root.position, root.rotation);
+            bullet.transform.SetPositionAndRotation(_bulletRoot.position, _bulletRoot.rotation);
             bullet.Body.velocity =
                 (Vector3.right + shotRandomizer) * directionSign * bullet.Data.Speed;
         }

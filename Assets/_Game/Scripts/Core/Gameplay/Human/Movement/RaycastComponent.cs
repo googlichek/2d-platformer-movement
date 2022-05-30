@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Game.Scripts.Data;
 using UnityEngine;
 
 namespace Game.Scripts.Core
@@ -8,17 +9,14 @@ namespace Game.Scripts.Core
     /// </summary>
     public class RaycastComponent : TickComponent
     {
+        [SerializeField]
+        private RaycastData _data = default;
+
         [SerializeField] [Space]
         private Transform _raycastLeft = default;
 
         [SerializeField]
         private Transform _raycastRight = default;
-
-        [SerializeField] [Space]
-        private LayerMask _layerMask = LayerMask.GetMask();
-
-        [SerializeField] [Range(0, 16)]
-        private float _contactDistanceY = 0.025f;
 
         private readonly List<RaycastHit2D> _hitsDownLeft = new();
         private readonly List<RaycastHit2D> _hitsDownRight = new();
@@ -32,13 +30,13 @@ namespace Game.Scripts.Core
         public override void Init()
         {
             _filter2D.useLayerMask = true;
-            _filter2D.layerMask = _layerMask;
+            _filter2D.layerMask = _data.LayerMask;
         }
 
         public override void PhysicsTick()
         {
-            CastRays(_hitsDownLeft, _raycastLeft.position, Vector2.down, _contactDistanceY);
-            CastRays(_hitsDownRight, _raycastRight.position, Vector2.down, _contactDistanceY);
+            CastRays(_hitsDownLeft, _raycastLeft.position, Vector2.down, _data.ContactDistanceY);
+            CastRays(_hitsDownRight, _raycastRight.position, Vector2.down, _data.ContactDistanceY);
 
             UpdateGroundState();
         }

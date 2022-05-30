@@ -1,13 +1,11 @@
 using Game.Scripts.Utils;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Game.Scripts.Core
 {
     public class SpriteFlipComponent : TickComponent
     {
-        [SerializeField]
-        private SpriteRenderer _spriteRenderer = default;
-
         [SerializeField]
         private MovementComponent _movementComponent = default;
 
@@ -30,7 +28,9 @@ namespace Game.Scripts.Core
             if (_lastMovementDirection.IsEqual(0))
                 return;
 
-            _spriteRenderer.flipX = _lastMovementDirection < 0;
+            var sign = Mathf.Sign(_lastMovementDirection);
+
+            transform.localScale = new Vector3(sign, 1, 1);
         }
     }
 }

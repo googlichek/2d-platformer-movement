@@ -17,11 +17,18 @@
 
         protected override void UpdateNextState()
         {
-            if (_inputWrapper.IsWeaponUsePressed &&
-                (_owner.MovementStateMachineComponent.ActiveState == MovementState.Idle ||
-                 _owner.MovementStateMachineComponent.ActiveState == MovementState.Crouch))
+            if (_inputWrapper.IsWeaponUsePressed)
             {
-                NextState = ActionState.IdleShoot;
+                if (_owner.MovementStateMachineComponent.ActiveState == MovementState.Idle ||
+                    _owner.MovementStateMachineComponent.ActiveState == MovementState.Crouch)
+                {
+                    NextState = ActionState.IdleShoot;
+                }
+
+                if (_owner.MovementStateMachineComponent.ActiveState == MovementState.Walk)
+                {
+                    NextState = ActionState.Melee;
+                }
             }
         }
 

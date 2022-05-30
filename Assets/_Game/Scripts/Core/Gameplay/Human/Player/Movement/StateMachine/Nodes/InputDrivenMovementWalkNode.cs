@@ -66,6 +66,10 @@ namespace Game.Scripts.Core
                 return;
 
             _owner.MovementComponent.SetMovementDirection(_inputWrapper.Horizontal);
+
+            if (_owner.MeleeComponent.IsInUse)
+                return;
+
             _owner.AnimationComponent.SetState(AnimationStates.Run);
         }
     }

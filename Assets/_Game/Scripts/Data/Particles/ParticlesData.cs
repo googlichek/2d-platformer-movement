@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Data
 {
-    [CreateAssetMenu(fileName = "ParticlesData", menuName = "SciptableObjects/Data/ParticlesData")]
+    [CreateAssetMenu(fileName = "ParticlesData", menuName = "ScriptableObject/Data/Particles")]
     public class ParticlesData : ScriptableObject
     {
         [SerializeField] private List<ParticleSystem> _particles = default;

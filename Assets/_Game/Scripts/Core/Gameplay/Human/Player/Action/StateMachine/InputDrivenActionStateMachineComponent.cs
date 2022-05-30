@@ -22,6 +22,7 @@ namespace Game.Scripts.Core
         {
             CreateNode<InputDrivenActionIdleNode>(ActionState.Idle).Setup(_owner, _inputWrapper);
             CreateNode<InputDrivenActionIdleShotNode>(ActionState.IdleShoot).Setup(_owner, _inputWrapper);
+            CreateNode<InputDrivenActionMeleeNode>(ActionState.Melee).Setup(_owner, _inputWrapper);
 
             ResetState();
         }

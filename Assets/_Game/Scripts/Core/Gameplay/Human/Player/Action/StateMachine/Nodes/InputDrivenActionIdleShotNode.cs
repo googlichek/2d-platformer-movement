@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Game.Scripts.Core
+﻿namespace Game.Scripts.Core
 {
     public class InputDrivenActionIdleShotNode : BaseEntityNode<ActionState>, IHumanActionNode
     {
@@ -26,18 +24,18 @@ namespace Game.Scripts.Core
 
         protected override void UpdateNextState()
         {
-            if (!_owner.GunComponent.IsInUse)
-            {
-                NextState = ActionState.Idle;
-            }
+            if (_owner.GunComponent.IsInUse)
+                return;
+
+            NextState = ActionState.Idle;
         }
 
         protected override void UpdateNodeState()
         {
-            if (_owner.GunComponent.IsInUse)
-            {
-                _owner.AnimationComponent.SetState(AnimationStates.IdleShot);
-            }
+            if (!_owner.GunComponent.IsInUse)
+                return;
+
+            _owner.AnimationComponent.SetState(AnimationStates.IdleShot);
         }
     }
 }

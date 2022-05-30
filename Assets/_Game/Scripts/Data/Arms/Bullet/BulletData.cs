@@ -2,15 +2,17 @@
 
 namespace Game.Scripts.Data
 {
-    [CreateAssetMenu(fileName = "BulletData", menuName = "SciptableObjects/Data/Weapon/Bullet")]
+    [CreateAssetMenu(fileName = "BulletData", menuName = "ScriptableObject/Data/Bullet")]
     public class BulletData : ScriptableObject
     {
         [SerializeField]
         private BulletType _type = BulletType.None;
 
-        [SerializeField]
-        [Range(0, 5000)]
+        [SerializeField] [Range(0, 5000)] [Space]
         private float _speed = 0;
+
+        [SerializeField] [Range(0, 500)]
+        private float _ricochetSpeed = 0;
 
         [SerializeField]
         [Range(0, 100)]
@@ -23,6 +25,8 @@ namespace Game.Scripts.Data
         public BulletType Type => _type;
 
         public float Speed => _speed;
+
+        public float RicochetSpeed => _ricochetSpeed;
 
         public float DamageAmount => _damageAmount;
 

@@ -33,6 +33,9 @@
 
         protected override void UpdateNodeState()
         {
+            if (_owner.MeleeComponent.IsInUse)
+                return;
+
             _owner.MovementComponent.SetMovementDirection(_inputWrapper.Horizontal);
             _owner.AnimationComponent.SetState(AnimationStates.Fall);
         }

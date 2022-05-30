@@ -2,7 +2,7 @@
 
 namespace Game.Scripts.Data
 {
-    [CreateAssetMenu(fileName = "MovementData", menuName = "SciptableObjects/Data/Human/Movement")]
+    [CreateAssetMenu(fileName = "MovementData", menuName = "ScriptableObject/Data/Human/Movement")]
     public class MovementData : ScriptableObject
     {
         [SerializeField] [Range(0, 10000)]

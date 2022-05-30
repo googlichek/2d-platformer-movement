@@ -11,7 +11,7 @@
             inputDrivenMovementStateMachine.Setup(this);
 
             var inputDrivenActionStateMachine =
-                (InputDrivenActionStateMachineComponent)actionStateMachineComponent;
+                (InputDrivenActionStateMachineComponent) actionStateMachineComponent;
             inputDrivenActionStateMachine.Setup(this);
         }
     }

@@ -23,10 +23,16 @@ namespace Game.Scripts.Core
         protected SpriteFlipComponent spriteFlipComponent = default;
 
         [SerializeField]
-        protected GunComponent gunComponent = default;
+        protected WeaponComponent gunComponent = default;
+
+        [SerializeField]
+        protected WeaponComponent meleeComponent = default;
 
         [SerializeField]
         protected ParticlesComponent dustParticlesComponent = default;
+
+        [SerializeField]
+        protected HitFlashComponent hitFlashComponent = default;
 
         public RaycastComponent RaycastComponent => raycastComponent;
 
@@ -42,9 +48,13 @@ namespace Game.Scripts.Core
 
         public SpriteFlipComponent SpriteFlipComponent => spriteFlipComponent;
 
-        public GunComponent GunComponent => gunComponent;
+        public WeaponComponent GunComponent => gunComponent;
+
+        public WeaponComponent MeleeComponent => meleeComponent;
 
         public ParticlesComponent DustParticlesComponent => dustParticlesComponent;
+
+        public HitFlashComponent HitFlashComponent => hitFlashComponent;
 
         public override void Init()
         {
@@ -57,7 +67,9 @@ namespace Game.Scripts.Core
             AttachComponent(animationComponent);
             AttachComponent(spriteFlipComponent);
             AttachComponent(gunComponent);
+            AttachComponent(meleeComponent);
             AttachComponent(dustParticlesComponent);
+            AttachComponent(hitFlashComponent);
         }
 
         public override void Dispose()
@@ -71,7 +83,9 @@ namespace Game.Scripts.Core
             DetachComponent(animationComponent);
             DetachComponent(spriteFlipComponent);
             DetachComponent(gunComponent);
+            DetachComponent(meleeComponent);
             DetachComponent(dustParticlesComponent);
+            DetachComponent(hitFlashComponent);
         }
     }
 }

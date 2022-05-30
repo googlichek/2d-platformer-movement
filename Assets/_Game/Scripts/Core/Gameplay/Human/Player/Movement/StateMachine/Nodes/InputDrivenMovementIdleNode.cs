@@ -64,7 +64,8 @@ namespace Game.Scripts.Core
 
         protected override void UpdateNodeState()
         {
-            if (_owner.GunComponent.IsInUse)
+            if (_owner.GunComponent.IsInUse ||
+                _owner.MeleeComponent.IsInUse)
                 return;
 
             _owner.AnimationComponent.SetState(AnimationStates.Idle);

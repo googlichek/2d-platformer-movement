@@ -2,7 +2,7 @@
 
 namespace Game.Scripts.Data
 {
-    [CreateAssetMenu(fileName = "WeaponData", menuName = "SciptableObjects/Data/Weapon/Gun")]
+    [CreateAssetMenu(fileName = "WeaponData", menuName = "ScriptableObject/Data/Weapon")]
     public class WeaponData : ScriptableObject
     {
         [SerializeField] [Range(0, 5)]
