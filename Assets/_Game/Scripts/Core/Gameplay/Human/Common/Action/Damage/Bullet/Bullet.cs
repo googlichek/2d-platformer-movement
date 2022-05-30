@@ -30,6 +30,8 @@ namespace Game.Scripts.Core
 
         private float _creationTime = 0;
 
+        private bool _isActive = false;
+
         public void Setup(BulletPool bulletPool, int ownerId)
         {
             _bulletPool = bulletPool;
@@ -49,6 +51,7 @@ namespace Game.Scripts.Core
             base.Enable();
 
             _creationTime = Time.time;
+            _isActive = true;
         }
 
         public override void Tick()
@@ -58,7 +61,8 @@ namespace Game.Scripts.Core
             if (_creationTime + _data.LifeTime > Time.time)
                 return;
 
-            Release();
+            if (_isActive)
+                Release();
         }
 
         public override void Dispose()
@@ -70,6 +74,7 @@ namespace Game.Scripts.Core
 
         public void Release()
         {
+            _isActive = false;
             _bulletPool.ReleaseBullet(this);
         }
     }
