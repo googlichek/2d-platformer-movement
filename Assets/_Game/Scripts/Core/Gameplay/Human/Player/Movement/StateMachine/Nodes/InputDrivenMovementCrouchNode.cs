@@ -2,7 +2,7 @@
 
 namespace Game.Scripts.Core
 {
-    public class InputDrivenMovementCrouchNode : BaseEntityNode<MovementState>, IHumanMovementNode
+    public class InputDrivenMovementCrouchNode : BaseEntityNode<MovementState>
     {
         private HumanController _owner = default;
         private InputWrapper _inputWrapper = default;

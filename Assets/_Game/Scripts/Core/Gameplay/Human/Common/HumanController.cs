@@ -34,6 +34,9 @@ namespace Game.Scripts.Core
         [SerializeField]
         protected HitFlashComponent hitFlashComponent = default;
 
+        [SerializeField]
+        protected HealthComponent healthComponent = default;
+
         public RaycastComponent RaycastComponent => raycastComponent;
 
         public MovementComponent MovementComponent => movementComponent;
@@ -56,6 +59,8 @@ namespace Game.Scripts.Core
 
         public HitFlashComponent HitFlashComponent => hitFlashComponent;
 
+        public HealthComponent HealthComponent => healthComponent;
+
         public override void Init()
         {
             base.Init();
@@ -70,6 +75,7 @@ namespace Game.Scripts.Core
             AttachComponent(meleeComponent);
             AttachComponent(dustParticlesComponent);
             AttachComponent(hitFlashComponent);
+            AttachComponent(healthComponent);
         }
 
         public override void Dispose()
@@ -86,6 +92,7 @@ namespace Game.Scripts.Core
             DetachComponent(meleeComponent);
             DetachComponent(dustParticlesComponent);
             DetachComponent(hitFlashComponent);
+            DetachComponent(healthComponent);
         }
     }
 }

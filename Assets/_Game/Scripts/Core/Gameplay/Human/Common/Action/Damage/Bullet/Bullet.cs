@@ -22,15 +22,18 @@ namespace Game.Scripts.Core
 
         public Rigidbody2D Body => _body;
 
-        public int OwnerId => id;
+        public int OwnerId => _ownerId;
 
         public float DamageAmount => _data.DamageAmount;
 
+        private int _ownerId = 0;
+
         private float _creationTime = 0;
 
-        public void Setup(BulletPool bulletPool)
+        public void Setup(BulletPool bulletPool, int ownerId)
         {
             _bulletPool = bulletPool;
+            _ownerId = ownerId;
         }
 
         public override void Init()
@@ -38,6 +41,7 @@ namespace Game.Scripts.Core
             base.Init();
 
             AttachComponent(_ricochetComponent);
+            _ricochetComponent.Setup(this);
         }
 
         public override void Enable()
@@ -54,7 +58,7 @@ namespace Game.Scripts.Core
             if (_creationTime + _data.LifeTime > Time.time)
                 return;
 
-            _bulletPool.ReleaseBullet(this);
+            Release();
         }
 
         public override void Dispose()
@@ -62,6 +66,11 @@ namespace Game.Scripts.Core
             base.Dispose();
 
             DetachComponent(_ricochetComponent);
+        }
+
+        public void Release()
+        {
+            _bulletPool.ReleaseBullet(this);
         }
     }
 }

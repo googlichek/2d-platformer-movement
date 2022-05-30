@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Core
 {
-    public class InputDrivenMovementIdleNode : BaseEntityNode<MovementState>, IHumanMovementNode
+    public class InputDrivenMovementIdleNode : BaseEntityNode<MovementState>
     {
         private HumanController _owner = default;
         private InputWrapper _inputWrapper = default;

@@ -27,6 +27,8 @@ namespace Game.Scripts.Core
 
         public bool HasGround => _hasGround;
 
+        public bool HasBothFeetOnTheGround => _hitsDownLeft.Count > 0 && _hitsDownRight.Count > 0;
+
         public override void Init()
         {
             _filter2D.useLayerMask = true;

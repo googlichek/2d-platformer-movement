@@ -1,6 +1,6 @@
 ﻿namespace Game.Scripts.Core
 {
-    public class InputDrivenActionMeleeNode : BaseEntityNode<ActionState>, IHumanActionNode
+    public class InputDrivenActionMeleeNode : BaseEntityNode<ActionState>
     {
         private HumanController _owner = default;
         private InputWrapper _inputWrapper = default;

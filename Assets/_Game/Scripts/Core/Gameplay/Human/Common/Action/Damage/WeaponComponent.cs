@@ -50,7 +50,7 @@ namespace Game.Scripts.Core
             var directionSign = Mathf.FloorToInt(transform.localScale.x);
 
             var bullet = _bulletPool.GetBullet(_data.BulletType);
-            bullet.Setup(_bulletPool);
+            bullet.Setup(_bulletPool, id);
 
             var velocityRandomY = Random.Range(-_data.ShotRandomnessY, _data.ShotRandomnessY);
             var shotRandomizer = new Vector3(0, velocityRandomY, 0);

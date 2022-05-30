@@ -6,13 +6,13 @@
         {
             base.Init();
 
-            var inputDrivenMovementStateMachine =
-                (InputDrivenMovementStateMachineComponent) movementStateMachineComponent;
-            inputDrivenMovementStateMachine.Setup(this);
+            var enemyMovementStateMachine =
+                (EnemyMovementStateMachineComponent) movementStateMachineComponent;
+            enemyMovementStateMachine.Setup(this);
 
-            var inputDrivenActionStateMachine =
-                (InputDrivenActionStateMachineComponent)actionStateMachineComponent;
-            inputDrivenActionStateMachine.Setup(this);
+            var enemyActionStateMachine =
+                (EnemyActionStateMachineComponent) actionStateMachineComponent;
+            enemyActionStateMachine.Setup(this);
         }
     }
 }
