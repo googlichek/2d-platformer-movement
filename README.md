@@ -1,9 +1,9 @@
-# easytrigger-test
+# 2d-platformer-movement
 ### 2d movement controller prototype.
 
 This project was created to showcase 2d player controller with movement and jump that feel good.
 
-You can play it at https://googlichek.github.io/easytrigger-test/
+You can play it at https://googlichek.github.io/2d-platformer-movement/
 
 ### Controls:
 
